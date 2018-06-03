@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FlatButton from 'material-ui/FlatButton';
-import NavigationFirstPage from 'material-ui/svg-icons/navigation/first-page';
-import NavigationLastPage from 'material-ui/svg-icons/navigation/last-page';
+import Button from '@material-ui/core/Button';
+import FirstPage from '@material-ui/icons/First'
+import LastPage from '@material-ui/icons/LastPage'
 
-const flatButtonStyle = {
-  minWidth: 16,
-};
 
 const calculateRange = arg => {
   const { total, current, display } = arg;
@@ -44,18 +41,18 @@ const getStateFromProps = props => {
 };
 
 const Page = ({ value, isActive, onClick, styleButton, stylePrimary }) => {
-  return !styleButton ? (<FlatButton
-    style = { flatButtonStyle }
-    label = { value.toString() }
-    primary = { isActive }
-    onClick = { onClick }
-  />) : (<div
+  return !styleButton
+  ? (<Button
+    color={isActive ? "primary" : "default"}
+    onClick = { onClick }>
+      { value.toString() }
+    </Button>)
+  : (<div
     style = { isActive ? stylePrimary : styleButton }
     label = { value.toString() }
-    onClick = { onClick }
-  >
-    {value}
-  </div>)
+    onClick = { onClick }>
+      {value}
+    </div>)
 
 };
 Page.propTypes = {
@@ -67,11 +64,12 @@ Page.propTypes = {
 };
 
 const FirstPageLink = ({ onClick, styleFirstPageLink }) => {
-  return !styleFirstPageLink ? (<FlatButton
-    style = { flatButtonStyle }
-    icon = { <NavigationFirstPage /> }
-    onClick = { onClick }
-  />) : (<div
+  return !styleFirstPageLink
+  ? (<Button
+      onClick = { onClick }>
+     <FirstPage/>
+    </Button>)
+  : (<div
     style = { styleFirstPageLink }
     onClick = { onClick }
   />);
@@ -83,11 +81,12 @@ FirstPageLink.propTypes = {
 };
 
 const LastPageLink = ({ onClick, styleLastPageLink }) => {
-  return !styleLastPageLink ? (<FlatButton
-    style = { flatButtonStyle }
-    icon = { <NavigationLastPage /> }
-    onClick = { onClick }
-  />) : (<div
+  return !styleLastPageLink
+  ? (<Button
+    onClick = { onClick }>
+      <LastPage/>
+    </Button>)
+  : (<div
     style = { styleLastPageLink }
     onClick = { onClick }
   />);
